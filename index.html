@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Расчет Зарплаты МТС</title>
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+<div class="container">
+  <h1>Расчет Зарплаты</h1>
+
+  <div class="categories-section">
+    <!-- Аппараты -->
+    <div class="category">
+      <label for="apparatus">Аппараты:</label>
+      <input type="number" id="apparatus" placeholder="Введите значение">
+      <div class="performance-options">
+        <label><input type="radio" name="apparatus_perf" value="120" checked> &gt;120% (1.8%)</label>
+        <label><input type="radio" name="apparatus_perf" value="100"> &gt;100% (1.3%)</label>
+        <label><input type="radio" name="apparatus_perf" value="less100"> &lt;100% (1%)</label>
+      </div>
+    </div>
+
+    <!-- Аксессуары -->
+    <div class="category">
+      <label for="accessories">Аксессуары:</label>
+      <input type="number" id="accessories" placeholder="Введите значение">
+      <div class="performance-options">
+        <label><input type="radio" name="accessories_perf" value="120" checked> &gt;120% (8%)</label>
+        <label><input type="radio" name="accessories_perf" value="100"> &gt;100% (6%)</label>
+        <label><input type="radio" name="accessories_perf" value="less100"> &lt;100% (4%)</label>
+      </div>
+    </div>
+
+    <!-- Услуги -->
+    <div class="category">
+      <label for="services">Услуги:</label>
+      <input type="number" id="services" placeholder="Введите значение">
+      <div class="performance-options">
+        <label><input type="radio" name="services_perf" value="120" checked> &gt;120% (15%)</label>
+        <label><input type="radio" name="services_perf" value="100"> &gt;100% (12%)</label>
+        <label><input type="radio" name="services_perf" value="less100"> &lt;100% (7%)</label>
+      </div>
+    </div>
+
+    <!-- СП ВИН+Волна -->
+    <div class="category">
+      <label for="sp_vin_wave">СП ВИН+Волна:</label>
+      <input type="number" id="sp_vin_wave" placeholder="Введите значение">
+      <div class="performance-options">
+        <label><input type="radio" name="sp_vin_wave_perf" value="120" checked> &gt;120% (7%)</label>
+        <label><input type="radio" name="sp_vin_wave_perf" value="100"> &gt;100% (7%)</label>
+        <label><input type="radio" name="sp_vin_wave_perf" value="less100"> &lt;100% (3%)</label>
+      </div>
+    </div>
+
+    <!-- СП Моя Страна Супер -->
+    <div class="category">
+      <label for="sp_my_country_super">СП Моя Страна Супер:</label>
+      <input type="number" id="sp_my_country_super" placeholder="Введите значение">
+      <div class="performance-options">
+        <label><input type="radio" name="sp_my_country_super_perf" value="120" checked> &gt;120% (3%)</label>
+        <label><input type="radio" name="sp_my_country_super_perf" value="100"> &gt;100% (3%)</label>
+        <label><input type="radio" name="sp_my_country_super_perf" value="less100"> &lt;100% (1%)</label>
+      </div>
+    </div>
+
+    <!-- СП Моя Страна -->
+    <div class="category">
+      <label for="sp_my_country">СП Моя Страна,Загорай, Космос,Сделай Сам:</label>
+      <input type="number" id="sp_my_country" placeholder="Введите значение">
+      <div class="performance-options">
+        <label><input type="radio" name="sp_my_country_perf" value="120" checked> &gt;120% (3%)</label>
+        <label><input type="radio" name="sp_my_country_perf" value="100"> &gt;100% (3%)</label>
+        <label><input type="radio" name="sp_my_country_perf" value="less100"> &lt;100% (1%)</label>
+      </div>
+    </div>
+
+    <!-- Кредиты -->
+    <div class="category">
+      <label for="credits">Кредиты:</label>
+      <input type="number" id="credits" placeholder="Введите значение">
+      <div class="performance-options">
+        <label><input type="radio" name="credits_perf" value="120" checked> &gt;120% (10%)</label>
+        <label><input type="radio" name="credits_perf" value="100"> &gt;100% (5%)</label>
+        <label><input type="radio" name="credits_perf" value="less100"> &lt;100% (2%)</label>
+      </div>
+    </div>
+
+    <!-- Сток АСС -->
+    <div class="category">
+      <label for="stock_ass">Сток АСС:</label>
+      <input type="number" id="stock_ass" placeholder="Введите значение">
+      <div class="performance-options">
+        <label><input type="radio" name="stock_ass_perf" value="120" checked> &gt 120% (10%)</label>
+        <label><input type="radio" name="stock_ass_perf" value="100"> &gt 100% (5%)</label>
+        <label><input type="radio" name="stock_ass_perf" value="less100"> &lt; 100% (2%)</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="experience-section">
+    <h2>Доплата за стаж:</h2>
+    <div class="experience-options">
+      <label class="experience-option">
+        <input type="checkbox" id="experience_10000">
+        10000 руб.
+      </label>
+      <label class="experience-option">
+        <input type="checkbox" id="experience_5000">
+        5000 руб.
+      </label>
+    </div>
+  </div>
+
+  <div class="days-section">
+    <h2>Отработанные дни:</h2>
+    <div class="days-info">
+      <p>Оклад: 30,000 руб. за 22 дня</p>
+      <p>Доплата за день: 1,363 руб./день</p>
+    </div>
+    <select id="worked_days">
+      <option value="0">0 дней</option>
+      <option value="1">1 день</option>
+      <option value="2">2 дня</option>
+      <option value="3">3 дня</option>
+      <option value="4">4 дня</option>
+      <option value="5">5 дней</option>
+      <option value="6">6 дней</option>
+      <option value="7">7 дней</option>
+      <option value="8">8 дней</option>
+      <option value="9">9 дней</option>
+      <option value="10">10 дней</option>
+      <option value="11">11 дней</option>
+      <option value="12">12 дней</option>
+      <option value="13">13 дней</option>
+      <option value="14">14 дней</option>
+      <option value="15">15 дней</option>
+      <option value="16">16 дней</option>
+      <option value="17">17 дней</option>
+      <option value="18">18 дней</option>
+      <option value="19">19 дней</option>
+      <option value="20">20 дней</option>
+      <option value="21">21 день</option>
+      <option value="22" selected>22 дня (30,000 руб.)</option>
+      <option value="23">23 дня (30,000 + 1,363 руб.)</option>
+      <option value="24">24 дня (30,000 + 2,726 руб.)</option>
+      <option value="25">25 дней (30,000 + 4,089 руб.)</option>
+      <option value="26">26 дней (30,000 + 5,452 руб.)</option>
+      <option value="27">27 дней (30,000 + 6,815 руб.)</option>
+      <option value="28">28 дней (30,000 + 8,178 руб.)</option>
+      <option value="29">29 дней (30,000 + 9,541 руб.)</option>
+      <option value="30">30 дней (30,000 + 10,904 руб.)</option>
+      <option value="31">31 день (30,000 + 12,267 руб.)</option>
+    </select>
+  </div>
+
+  <div class="result-section">
+    <button id="calculate-btn">Рассчитать зарплату</button>
+    <div id="result" class="result-box">
+      <div class="result-item">
+        <h3>Сумма бонуса по показателям:</h3>
+        <p id="bonus-result">0 руб.</p>
+      </div>
+      <div class="result-item">
+        <h3>Общая сумма выплат:</h3>
+        <p id="total-result">0 руб.</p>
+      </div>
+      <div class="result-item">
+        <h3>Сумма выплат с учетом налогов:</h3>
+        <p id="net-result">0 руб.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="./js/app.js"></script>
+</body>
+</html>
