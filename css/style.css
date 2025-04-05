@@ -92,12 +92,18 @@ select {
   cursor: pointer;
   margin-top: 20px;
   transition: background-color 0.3s;
+  max-width: 250px;
+  margin: 0 auto;
 }
 
 #calculate-btn:hover {
   background-color: #c0050e;
 }
 
+.result-section{
+  display: flex;
+  flex-direction: column;
+}
 .result-box {
   margin-top: 30px;
   padding: 20px;
