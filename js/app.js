@@ -3,30 +3,22 @@ document.addEventListener('DOMContentLoaded', function() {
   calculateBtn.addEventListener('click', calculateSalary);
 
   function calculateSalary() {
-    // Константы для расчета
     const BASE_SALARY = 30000;
     const DAY_RATE = 1363;
-    const TAX_RATE = 0.13; // 13% НДФЛ
+    const TAX_RATE = 0.13;
 
-    // Получаем количество отработанных дней
+    // Окладная часть (без изменений)
     const workedDays = parseInt(document.getElementById('worked_days').value) || 0;
+    let salaryPart = workedDays <= 22
+        ? BASE_SALARY * (workedDays / 22)
+        : BASE_SALARY + ((workedDays - 22) * DAY_RATE);
 
-    // Рассчитываем окладную часть
-    let salaryPart = 0;
-    if (workedDays <= 22) {
-      salaryPart = BASE_SALARY * (workedDays / 22);
-    } else {
-      salaryPart = BASE_SALARY + ((workedDays - 22) * DAY_RATE);
-    }
-
-    // Получаем доплату за стаж
-    const experience10000 = document.getElementById('experience_10000').checked;
-    const experience5000 = document.getElementById('experience_5000').checked;
+    // Доплата за стаж (без изменений)
     let experienceSum = 0;
-    if (experience10000) experienceSum += 10000;
-    if (experience5000) experienceSum += 5000;
+    if (document.getElementById('experience_10000').checked) experienceSum += 10000;
+    if (document.getElementById('experience_5000').checked) experienceSum += 5000;
 
-    // Проценты для каждой категории
+    // Проценты для категорий
     const percentages = {
       'apparatus': { '120': 0.018, '100': 0.013, 'less100': 0.01 },
       'accessories': { '120': 0.08, '100': 0.06, 'less100': 0.04 },
@@ -38,33 +30,19 @@ document.addEventListener('DOMContentLoaded', function() {
       'stock_ass': { '120': 0.10, '100': 0.05, 'less100': 0.02 }
     };
 
-    // Рассчитываем бонусную часть
+    // Расчет бонусов (теперь без дублирования)
     let bonusPart = 0;
-
-    // Обрабатываем каждую категорию
     for (const [category, rates] of Object.entries(percentages)) {
       const value = parseFloat(document.getElementById(category).value) || 0;
       const selectedOption = document.querySelector(`input[name="${category}_perf"]:checked`).value;
-      const percent = rates[selectedOption];
-      bonusPart += value * percent;
+      bonusPart += value * rates[selectedOption];
     }
 
-    // Особый расчет для СП Моя Страна (учитывает 4 направления)
-    const spMyCountryValue = parseFloat(document.getElementById('sp_my_country').value) || 0;
-    const spMyCountryPerf = document.querySelector('input[name="sp_my_country_perf"]:checked').value;
-    const spMyCountryPercent = percentages['sp_my_country'][spMyCountryPerf];
-
-    // Умножаем на 4, так как эта категория объединяет 4 направления
-    bonusPart += spMyCountryValue * spMyCountryPercent * 4;
-
-    // Рассчитываем общую сумму выплат
+    // Итоговые расчеты (без изменений)
     const totalPayout = salaryPart + bonusPart + experienceSum;
+    const netPayout = (salaryPart * (1 - TAX_RATE)) + bonusPart + experienceSum;
 
-    // Рассчитываем сумму с учетом налогов (налог только с окладной части)
-    const salaryAfterTax = salaryPart * (1 - TAX_RATE);
-    const netPayout = salaryAfterTax + bonusPart + experienceSum;
-
-    // Выводим результаты
+    // Вывод результатов
     document.getElementById('bonus-result').textContent = `${bonusPart.toFixed(2)} руб.`;
     document.getElementById('total-result').textContent = `${totalPayout.toFixed(2)} руб.`;
     document.getElementById('net-result').textContent = `${netPayout.toFixed(2)} руб.`;
